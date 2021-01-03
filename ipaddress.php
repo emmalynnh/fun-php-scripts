@@ -1,5 +1,16 @@
 <?
 
+//======================================================================
+// fun-php-scripts - PHP CLI GET IP ADDRESS
+//======================================================================
+
+/*
+* Run from shell with the following command:
+*
+*   php ipaddress.php
+*
+*/
+
 function getIPInternal(){
 	$socket = socket_create(AF_INET, SOCK_DGRAM,  SOL_UDP);
 	if ($socket === false) {
@@ -25,9 +36,23 @@ function getIPExternal() {
 	$cl = curl_init();
 	curl_setopt($cl, CURLOPT_URL, "checkip.amazonaws.com");
 	curl_setopt($cl, CURLOPT_RETURNTRANSFER, 1);
-	$externalIP = curl_exec($cl);
+	
+	// Get detailed connection info
+	//print_r(curl_getinfo($cl));
+	
+	
+	if(curl_exec($cl) === false)
+	{
+		echo 'Curl error for external IP: ' . curl_error($cl) . PHP_EOL;
+	}
+	else
+	{
+		$externalIP = curl_exec($cl);
+		print_r("This is probably external IP: " . $externalIP);
+	}
+	
 	curl_close($cl);
-	print_r("This is probably external IP: " . $externalIP . PHP_EOL);
+	
 }
 
 

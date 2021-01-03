@@ -7,7 +7,7 @@
 /*
 * Run from shell with the following command:
 *
-*   php date.php
+*   php clock.php
 *
 */
 
