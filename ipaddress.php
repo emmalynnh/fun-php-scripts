@@ -1,6 +1,6 @@
 <?
 
-function getExternalIP(){
+function getIP(){
 	 $socket = socket_create(AF_INET, SOCK_DGRAM,  SOL_UDP);
 	 if ($socket === false) {
 		 echo "socket_create() failed: reason: " . socket_strerror(socket_last_error()) . "\n";
@@ -20,6 +20,6 @@ function getExternalIP(){
 	 socket_close($socket);
 }
 
-getExternalIP();
+getIP();
 
 ?>
